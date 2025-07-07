@@ -1,0 +1,107 @@
+{% extends 'webapp/base.html' %}
+
+{% block title %}{{ property.title }} - Real Estate Site{% endblock %}
+
+{% block content %}
+<div class="container my-5">
+    <div class="row">
+        <div class="col-md-8">
+            <div class="card">
+                {% if property.image %}
+                <img src="{{ property.image.url }}" class="card-img-top" alt="{{ property.title }}" style="height: 400px; object-fit: cover;">
+                {% else %}
+                <div class="card-img-top bg-light d-flex align-items-center justify-content-center" style="height: 400px;">
+                    <i class="fas fa-home fa-5x text-muted"></i>
+                </div>
+                {% endif %}
+                <div class="card-body">
+                    <h1 class="card-title">{{ property.title }}</h1>
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                        <span class="h3 text-primary">${{ property.price|floatformat:0 }}</span>
+                        <span class="badge bg-secondary fs-6">{{ property.get_status_display }}</span>
+                    </div>
+                    <p class="card-text">{{ property.description }}</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-header">
+                    <h5>Property Details</h5>
+                </div>
+                <div class="card-body">
+                    <table class="table table-sm">
+                        <tbody>
+                            <tr>
+                                <td><strong>Type:</strong></td>
+                                <td>{{ property.get_property_type_display }}</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Bedrooms:</strong></td>
+                                <td><i class="fas fa-bed"></i> {{ property.bedrooms }}</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Bathrooms:</strong></td>
+                                <td><i class="fas fa-bath"></i> {{ property.bathrooms }}</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Area:</strong></td>
+                                <td><i class="fas fa-ruler-combined"></i> {{ property.area }} sq ft</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Status:</strong></td>
+                                <td>{{ property.get_status_display }}</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Address:</strong></td>
+                                <td>{{ property.address }}</td>
+                            </tr>
+                            <tr>
+                                <td><strong>City:</strong></td>
+                                <td>{{ property.city }}</td>
+                            </tr>
+                            <tr>
+                                <td><strong>State:</strong></td>
+                                <td>{{ property.state }}</td>
+                            </tr>
+                            <tr>
+                                <td><strong>ZIP Code:</strong></td>
+                                <td>{{ property.zip_code }}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            
+            <div class="card mt-4">
+                <div class="card-header">
+                    <h5>Contact Information</h5>
+                </div>
+                <div class="card-body">
+                    <p><i class="fas fa-phone"></i> (555) 123-4567</p>
+                    <p><i class="fas fa-envelope"></i> info@realestate.com</p>
+                    <button class="btn btn-primary btn-lg w-100 mb-2">
+                        <i class="fas fa-phone"></i> Call Now
+                    </button>
+                    <button class="btn btn-outline-primary btn-lg w-100">
+                        <i class="fas fa-envelope"></i> Send Message
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="row mt-4">
+        <div class="col-12">
+            <div class="d-flex justify-content-between">
+                <a href="{% url 'property_list' %}" class="btn btn-secondary">
+                    <i class="fas fa-arrow-left"></i> Back to Properties
+                </a>
+                <small class="text-muted">
+                    Listed on {{ property.created_at|date:"F d, Y" }}
+                </small>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
