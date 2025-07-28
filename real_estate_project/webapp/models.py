@@ -29,6 +29,8 @@ class Property(models.Model):
     city = models.CharField(max_length=100)
     state = models.CharField(max_length=100)
     zip_code = models.CharField(max_length=10)
+    latitude = models.DecimalField(max_digits=9, decimal_places=6, help_text="Latitude coordinate for map display")
+    longitude = models.DecimalField(max_digits=9, decimal_places=6, help_text="Longitude coordinate for map display")
     image = models.ImageField(upload_to='properties/', blank=True, null=True)
     featured = models.BooleanField(default=False)
     created_at = models.DateTimeField(auto_now_add=True)
