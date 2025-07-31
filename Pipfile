@@ -9,6 +9,8 @@ pillow = "*"
 djangorestframework = "*"
 django-cors-headers = "*"
 django-filter = "*"
+pymongo = "*"
+pytz = "*"
 
 [dev-packages]
 

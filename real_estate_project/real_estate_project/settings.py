@@ -84,6 +84,12 @@ DATABASES = {
     }
 }
 
+# MongoDB configuration
+MONGODB_SETTINGS = {
+    'host': 'mongodb://localhost:27017/',
+    'db': 'real_estate_db'
+}
+
 
 # Password validation
 # https://docs.djangoproject.com/en/5.2/ref/settings/#auth-password-validators

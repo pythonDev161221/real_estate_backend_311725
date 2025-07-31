@@ -2,6 +2,7 @@ from django.db import models
 from django.urls import reverse
 
 class Property(models.Model):
+    
     PROPERTY_TYPES = [
         ('house', 'House'),
         ('apartment', 'Apartment'),
