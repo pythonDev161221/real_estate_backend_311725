@@ -90,8 +90,13 @@ def property_list_mongodb(request):
         # Convert to dictionaries
         properties_data = [property_to_dict(prop) for prop in properties]
         
+        # Simple pagination response format to match DRF pagination
+        total_count = len(properties_data)
+        
         return Response({
-            'count': len(properties_data),
+            'count': total_count,
+            'next': None,  # Simple implementation - no pagination for now
+            'previous': None,
             'results': properties_data
         })
     
