@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 """
 
 from pathlib import Path
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -85,9 +86,12 @@ DATABASES = {
 }
 
 # MongoDB configuration
+MONGODB_HOST = os.getenv('MONGODB_HOST', 'mongodb://localhost:27017/')
+MONGODB_DB = os.getenv('MONGODB_DB', 'real_estate_db')
+
 MONGODB_SETTINGS = {
-    'host': 'mongodb://localhost:27017/',
-    'db': 'real_estate_db'
+    'host': MONGODB_HOST,
+    'db': MONGODB_DB
 }
 
 

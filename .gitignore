@@ -142,3 +142,10 @@ static/
 .Trashes
 ehthumbs.db
 Thumbs.db
+
+# Docker
+.docker/
+docker-compose.override.yml
+.env.local
+.env.production
+.env.development

@@ -1,0 +1,41 @@
+version: '3.8'
+
+services:
+  mongodb:
+    image: mongo:7.0
+    container_name: real_estate_mongo
+    restart: unless-stopped
+    ports:
+      - "27017:27017"
+    environment:
+      MONGO_INITDB_DATABASE: real_estate_db
+    volumes:
+      - mongodb_data:/data/db
+    networks:
+      - real_estate_network
+
+  django:
+    build: .
+    container_name: real_estate_django
+    restart: unless-stopped
+    ports:
+      - "8000:8000"
+    volumes:
+      - .:/app
+      - media_volume:/app/media
+    environment:
+      - DEBUG=1
+      - MONGODB_HOST=mongodb://mongodb:27017/
+      - MONGODB_DB=real_estate_db
+    depends_on:
+      - mongodb
+    networks:
+      - real_estate_network
+
+volumes:
+  mongodb_data:
+  media_volume:
+
+networks:
+  real_estate_network:
+    driver: bridge
