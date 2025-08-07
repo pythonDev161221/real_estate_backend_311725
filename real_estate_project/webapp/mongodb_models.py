@@ -52,6 +52,12 @@ class PropertyMongoDB:
         self.featured = kwargs.get('featured', False)
         self.created_at = kwargs.get('created_at', datetime.now())
         self.updated_at = kwargs.get('updated_at', datetime.now())
+        
+        # User ownership and permissions
+        self.owner_id = kwargs.get('owner_id', None)  # User ID who owns this property
+        self.created_by_id = kwargs.get('created_by_id', None)  # User ID who created this listing
+        self.is_public = kwargs.get('is_public', True)  # Whether property is publicly visible
+        self.contact_info = kwargs.get('contact_info', {})  # Owner contact details
     
     @property
     def id(self):
@@ -104,7 +110,11 @@ class PropertyMongoDB:
             'image': self.image,
             'featured': self.featured,
             'created_at': self.created_at,
-            'updated_at': self.updated_at
+            'updated_at': self.updated_at,
+            'owner_id': self.owner_id,
+            'created_by_id': self.created_by_id,
+            'is_public': self.is_public,
+            'contact_info': self.contact_info
         }
         
         if self._id:

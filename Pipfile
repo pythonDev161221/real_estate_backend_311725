@@ -11,6 +11,8 @@ django-cors-headers = "*"
 django-filter = "*"
 pymongo = "*"
 pytz = "*"
+djangorestframework-simplejwt = "==5.3.0"
+setuptools = "*"
 
 [dev-packages]
 
