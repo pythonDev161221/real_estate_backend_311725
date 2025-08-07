@@ -91,3 +91,46 @@ def home(request):
         'recent_properties': recent_properties,
     }
     return render(request, 'webapp/home.html', context)
+
+def property_map(request):
+    # Build filters for MongoDB
+    filters = {}
+    
+    # Filter by status
+    status = request.GET.get('status')
+    if status:
+        filters['status'] = status
+    
+    # Filter by property type
+    property_type = request.GET.get('type')
+    if property_type:
+        filters['property_type'] = property_type
+    
+    # Get properties from MongoDB
+    properties = PropertyMongoDB.find_all(
+        filters=filters,
+        sort=[('created_at', -1)]
+    )
+    
+    # Property types and status choices for filters
+    property_types = [
+        ('house', 'House'),
+        ('apartment', 'Apartment'),
+        ('condo', 'Condo'),
+        ('townhouse', 'Townhouse'),
+        ('land', 'Land'),
+    ]
+    
+    status_choices = [
+        ('sale', 'For Sale'),
+        ('rent', 'For Rent'),
+        ('sold', 'Sold'),
+        ('rented', 'Rented'),
+    ]
+    
+    context = {
+        'properties': properties,
+        'property_types': property_types,
+        'status_choices': status_choices,
+    }
+    return render(request, 'webapp/property_map.html', context)

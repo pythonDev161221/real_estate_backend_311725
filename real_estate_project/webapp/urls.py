@@ -5,4 +5,5 @@ urlpatterns = [
     path('', views.home, name='home'),
     path('properties/', views.property_list, name='property_list'),
     path('property/<str:pk>/', views.property_detail, name='property_detail'),
+    path('map/', views.property_map, name='property_map'),
 ]
