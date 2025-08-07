@@ -1,9 +1,3 @@
-from django.urls import path
-from . import views
-
-urlpatterns = [
-    path('', views.home, name='home'),
-    path('properties/', views.property_list, name='property_list'),
-    path('property/<str:pk>/', views.property_detail, name='property_detail'),
-    path('map/', views.property_map, name='property_map'),
-]
+# webapp URLs are now empty - all functionality moved to API
+# This app now only serves as a container for MongoDB models
+urlpatterns = []
